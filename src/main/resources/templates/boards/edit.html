@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <title>Wanted Main Page!</title>
+        <style>
+            .field-error {
+                border-color: #dc3545;
+                color: #dc3545;
+            }
+        </style>
+    </head>
+<body>
+    <h1>게시판 수정 페이지</h1>
+    <form th:action th:object="${boardUpdateDto}" method="post">
+        <label>게시판 이름(수정 후) : </label>
+            <input type="text" th:errorclass="field-error" th:field="*{subject}"/><br />
+            <div th:errors="*{subject}" class="field-error"></div>
+            <input type="hidden" name="id" th:value="${id}"/><br />
+            <input type="submit">
+            <input type="reset">
+    </form>
+</body>
+</html>

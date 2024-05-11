@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Wanted Main Page!</title>
+
+    <style>
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<h5 th:if="${param.loginFail}" class="text-danger text-center">아이디와 비밀번호를 다시 확인해 주세요!</h5>
+
+<div class="container bg-primary-subtle border mt-5 border-primary-subtle rounded-3">
+    <div class="py-5 text-center">
+        <h2>로그인을 통해 더 많은 서비스를 이용해보세요!</h2>
+    </div>
+    <form th:action th:object = "${loginForm}" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="nickname" class="col-form-label">아이디 : </label>
+            </div>
+            <div class="col-auto">
+                <input th:errorclass="field-error" type="text" th:field="*{nickname}"/><br />
+            </div>
+            <div th:errors="*{nickname}" th:class="field-error">
+                닉네임 오류
+            </div>
+            <div class="col-auto"></div>
+        </div>
+
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="password" class="col-form-label">비밀번호 : </label>
+            </div>
+            <div class="col-auto">
+                <input th:errorclass="field-error" type="password" th:field="*{encryptedPassword}"/><br />
+            </div>
+            <div th:errors="*{encryptedPassword}" th:class="field-error">
+                비밀번호 오류
+            </div>
+            <div class="col-auto"></div>
+        </div>
+
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>

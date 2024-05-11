@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <title>Wanted Main Page!</title>
+    </head>
+<body>
+    <h1>게시판 삭제 페이지</h1>
+    <form th:action="|/boards/${board.id}/delete|" method="post">
+        <label>게시판 비밀번호 입력 : </label><input type="text" name="password"/><br />
+        <input type="submit">
+        <input type="reset">
+    </form>
+</body>
+</html>

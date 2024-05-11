@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Wanted Main Page!</title>
+    <style>
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<h1>게시글 수정 페이지</h1>
+<form th:action th:object = "${postUpdateDto}" method="post">
+    <div>
+        <label>글 제목: </label><input th:errorclass="field-error" type="text" th:field="*{title}"/><br />
+        <div th:errors="*{title}" class="field-error"></div>
+    </div>
+    <div>
+        <label>공지 여부:</label>
+        <input type="checkbox" th:field = "*{notice}">
+        <label for= "${#ids.prev('notice')}"> 공지</label>
+    </div>
+
+    <label>카테고리 선택: </label>
+    <div th:each = "category : ${categories}">
+        <input type="checkbox" th:field="*{postCategories}" th:value = "${category}"/>
+        <label th:for = "${#ids.prev('postCategories')}"
+               th:text = "${category}"></label><br />
+    </div>
+
+    <div>
+        <label>글 내용: </label>
+        <input type="text" th:errorclass="field-error" th:field="*{content}"/><br />
+        <div th:errors="*{content}" class="field-error"></div>
+    </div>
+
+    <input type="submit">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="card border w-25 ms-3 mb - 3" th:fragment = "loginBanner">
+    <div class="card-body">
+      <button th:if = "!${memberSessionInfo}" onclick="location.href='/members/login'" class="btn btn-primary">로그인</button>
+      <button th:if = "!${memberSessionInfo}" onclick="location.href='/members/join'" class="btn btn-info">회원가입</button>
+      <div th:if = "${memberSessionInfo}">
+        <span th:text = "|${memberSessionInfo.nickname}님 환영합니다!!|"></span>
+        <button onclick="location.href='/members/logout'" class="btn btn-danger">로그아웃</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

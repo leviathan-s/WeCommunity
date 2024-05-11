@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Employee World</title>
+
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>회원 가입</h2>
+            <p class="lead">회원가입을 위해서 다음 정보들을 기입해 주세요</p>
+        </div>
+
+
+        <div class="container border row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">회원 정보</h4>
+                <form class="needs-validation" th:action th:object = "${memberSaveDto}" method="post">
+                    <div class="row g-3">
+
+                        <div class="col-sm-6">
+                            <label for="nickname" class="form-label">닉네임(*)</label>
+                            <input type="text" th:errorclass = "field-error" class="form-control" th:field="*{nickname}" placeholder="닉네임 입력">
+                            <div th:errors = "*{nickname}" class="field-error"></div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="encryptedPassword" class="form-label">비밀번호(*)</label>
+                            <input type="password" th:errorclass = "field-error" class="form-control" th:field="*{encryptedPassword}" placeholder="비밀번호 입력">
+                            <div th:errors = "*{encryptedPassword}" class="field-error"></div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="email" class="form-label">이메일(*)</label>
+                            <input type="text" th:errorclass = "field-error" class="form-control" th:field="*{email}" placeholder="이메일 입력">
+                            <div th:errors = "*{email}" class="field-error"></div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="contact" class="form-label">연락처(*)</label>
+                            <input type="text" th:errorclass = "field-error" class="form-control" th:field="*{contact}" placeholder="연락처 입력">
+                            <div th:errors = "*{contact}" class="field-error"></div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="introduction" class="form-label">자기소개</label>
+                            <input type="text" style="width:300px;height:200px;" th:errorclass = "field-error" name="introduction" class="form-control" th:field="*{introduction}" placeholder="자기소개 입력">
+                            <div th:errors = "*{introduction}" class="field-error"></div>
+                        </div>
+
+                    </div>
+
+<!--                    <input type="submit">-->
+                    <button type="submit" class="w-50 mt-5 btn btn-primary btn-lg">회원 가입</button>
+                    <button onclick="location.href='/'" class="w-50 mt-5 btn btn-primary btn-lg" type="button">취소</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017–2022 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <title>Wanted Main Page!</title>-->
+<!--    <style>-->
+<!--        .field-error {-->
+<!--            border-color: #dc3545;-->
+<!--            color: #dc3545;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>회원가입 페이지</h1>-->
+<!--<form th:action th:object = "${memberSaveDto}" method="post">-->
+<!--    <div>-->
+<!--        <label>닉네임: </label>-->
+<!--        <input type="text" th:errorclass = "field-error" th:field="*{nickname}"/><br />-->
+<!--        <div th:errors = "*{nickname}" th:class="field-error"></div>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label>패스워드: </label><input type="password" th:errorclass="field-error" th:field="*{encryptedPassword}"/><br />-->
+<!--        <div th:errors = "*{encryptedPassword}" th:class="field-error"></div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div>-->
+<!--        <label>이메일: </label><input type="text" th:errorclass="field-error" th:field="*{email}"/><br />-->
+<!--        <div th:errors = "*{email}" th:class="field-error"></div>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label>연락처: </label><input type="text" th:errorclass="field-error" th:field="*{contact}"/><br />-->
+<!--        <div th:errors = "*{contact}" th:class="field-error"></div>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label>자기소개: </label><input type="text" th:errorclass="field-error" th:field="*{introduction}"/><br />-->
+<!--        <div th:errors = "*{introduction}" th:class="field-error"></div>-->
+<!--    </div>-->
+
+<!--    <input type="submit">-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

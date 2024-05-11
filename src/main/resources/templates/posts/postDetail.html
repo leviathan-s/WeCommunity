@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Wanted Main Page!</title>
+</head>
+<body>
+<div th:replace = "~{template/fragment/fragments :: loginBanner}"> </div>
+
+<div class="container-sm border">
+    <h1>게시글 페이지</h1>
+    <div th:object = "${postResponseDto}" >
+        <div>
+            <label>글 제목: </label><input type="text" th:field="*{title}" readonly/><br />
+        </div>
+        <div>
+            <label>공지 여부:</label>
+            <input type="checkbox" th:field = "*{isNotice}" disabled/>
+            <label for="is_notice">공지</label>
+        </div>
+
+        <label>카테고리 분류:</label>
+        <div th:each = "category : ${categories}">
+            <input type="checkbox" th:field = "${postResponseDto.postCategories}" th:value = "${category}" disabled/>
+            <label th:for="${#ids.prev('postCategories')}" th:text = "${category}"></label>
+        </div>
+
+        <div>
+            <label>글 내용: </label>
+            <input type="text" th:field="*{content}" readonly/><br />
+        </div>
+
+        <button th:onclick="|location.href = '/boards/${boardId}'|">게시판으로 돌아가기</button>
+        <button th:onclick="|location.href='/posts/*{id}/edit'|" >게시글 수정</button>
+        <button th:onclick="|location.href='/posts/*{id}/delete'|">게시글 삭제</button>
+    </div>
+</div>
+
+
+<div class="container-sm">
+    <div class="card">
+        <div class="card-header">
+            Comments
+        </div>
+
+        <div class="card-body">
+            <form th:object = "${commentSaveDto}" th:action="@{/comments/write/{postId}(postId = ${postResponseDto.id})}" method="post">
+                <p><input class="form-control" type="text" th:field="*{content}" placeholder="덧글 내용을 입력해 주세요" aria-label="Username"></p>
+                <p><input type="checkbox" th:field="*{secret}" name="is_secret"> <label>비밀 여부</label></p>
+                <p><input type="submit"></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="card">-->
+<!--    <form th:object = "${commentSaveDto}" th:action="@{/comments/write/{postId}(postId = ${post.id})}" method="post">-->
+<!--        <input class="form-control" type="text" th:field="*{content}" placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 의해 제재를 받을 수 있습니다." aria-label="Username">-->
+<!--        <input type="checkbox" th:field="*{secret}" name="is_secret"> <label>비밀 여부</label>-->
+<!--        <input type="submit">-->
+<!--    </form>-->
+<!--</div>-->
+
+<div class="container-sm">
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">댓글 번호</th>
+                <th scope="col">작성자</th>
+                <th scope="col">내용</th>
+                <th scope="col">작성일</th>
+                <th scope="col">삭제하기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "commentResponseDto : ${commentResponseDtos}">
+                <td th:text = "${commentResponseDtoStat.count}">번호</td>
+                <td th:text = "${commentResponseDto.memberResponseDto.nickname}">작성자</td>
+                <td th:text = "${commentResponseDto.content}">내용</td>
+                <td th:text = "${#temporals.format(commentResponseDto.createdDate, 'yyyy-MM-dd HH:mm:ss')}">작성일</td>
+                <td><a th:href="@{/comments/{commentId}/delete/{postId}(commentId = ${commentResponseDto.id}, postId = ${postResponseDto.id})}">▶</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
