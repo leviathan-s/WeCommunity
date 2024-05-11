@@ -17,10 +17,3 @@ SpringBoot + SpringDataJPA
 4. 개발자 정의 예외 페이지 처리
 - Exception Handler이용하여 특정 예외 발생 시에는 개발자 정의 오류페이지로 리다이렉션 되도록 구현
 5. Bean Validation 이용한 입력 값 검증
-
-
-# 현재 진행 상황
-1. 게시판 / 게시글 / 덧글의 CRUD 완료
-- 게시글과 카테고리 / 공지 여부를 선택하고 저장 가능.
-2. Spring Data JPA이용하여 페이징 기능 구현
-3. 세션 기반의 로그인 기능 구현 + Spring MVC의 Interceptor를 이용하여 게시판 / 게시글 / 덧글의 CUD 작업 시 미 로그인자를 로그인 페이지로 리다이렉션
